@@ -9,7 +9,7 @@ from generator_izvestaja import generisi_izvestaj, sacuvaj_izvestaj  # Funkcije 
 
 
 def main() -> None:
-    # Učitavamo API ključ i ostala podešavanja iz .env fajla.
+    #Učitavamo API ključ i ostala podešavanja iz .env fajla.
     ucitaj_env_promenljive()
 
     # Čitamo argumente koje je korisnik eventualno uneo pri pokretanju programa.
