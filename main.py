@@ -153,5 +153,5 @@ def prikazi_obavestenje_o_privatnosti() -> None:
 
 
 # Obezbeđujemo da se main funkcija pokrene samo kada se ovaj fajl izvršava direktno.
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()

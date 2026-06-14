@@ -16,7 +16,7 @@ class Slika:
 class KlijentSlika:
     # Ova klasa proverava i učitava slike pre slanja analizatoru.
 
-    def _init_(
+    def __init__(
         self,
         maksimalna_velicina_mb: float = 20.0,
         dozvoljene_ekstenzije: tuple[str, ...] = (".png",),
