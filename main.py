@@ -1,4 +1,5 @@
 import argparse  # Biblioteka za rad sa argumentima iz komandne linije.
+from datetime import datetime
 from pathlib import Path  # Omogućava lakši rad sa putanjama do fajlova.
 
 from dotenv import load_dotenv as ucitaj_env_promenljive  # Učitava promenljive iz .env fajla.
@@ -70,8 +71,8 @@ def main() -> None:
             putanja_blender_slike=blender_slika.putanja,
         )
 
-        # Formiramo izlaznu putanju za čuvanje izveštaja.
-        putanja_izlaza = Path(argumenti.izlaz)
+        # Formiramo izlaznu putanju za čuvanje izveštaja i dodajemo datum i vreme u naziv fajla.
+        putanja_izlaza = napravi_putanju_izvestaja(argumenti.izlaz)
 
         # Čuvamo izveštaj u fajl.
         sacuvaj_izvestaj(izvestaj, putanja_izlaza)
@@ -141,6 +142,25 @@ def parsiraj_argumente() -> argparse.Namespace:
 
     # Vraćamo obrađene argumente.
     return parser.parse_args()
+
+def napravi_putanju_izvestaja(naziv_fajla: str) -> Path:
+    # Pretvaramo naziv izlaznog fajla u Path objekat.
+    putanja = Path(naziv_fajla)
+
+    # Pravimo tekst sa trenutnim datumom i vremenom.
+    datum_i_vreme = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    # Uzimamo ime fajla bez ekstenzije, na primer "izvestaj_poredjenja_slika".
+    ime_fajla = putanja.stem
+
+    # Uzimamo ekstenziju fajla, na primer ".md".
+    ekstenzija = putanja.suffix or ".md"
+
+    # Pravimo novo ime fajla sa datumom i vremenom.
+    novo_ime_fajla = f"{ime_fajla}_{datum_i_vreme}{ekstenzija}"
+
+    # Vraćamo novu putanju sa istim folderom, ali novim imenom fajla.
+    return putanja.with_name(novo_ime_fajla)
 
 
 def prikazi_obavestenje_o_privatnosti() -> None:

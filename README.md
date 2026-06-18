@@ -1,3 +1,6 @@
+
+Dole navedene komande su za Git Bash i podrazumeva se da je instaliran Python programski jezik.
+
 Uputstvo za pokretanje AI agenta:
 
 1. Napravi virtualno okruzenje: python -m venv .venv
@@ -7,7 +10,6 @@ Uputstvo za pokretanje AI agenta:
 5. Pokrenuti aplikaciju sa: komandom python main.py
 Nakon pokretanja aplikacija pojavljuje se poruka za unos AI generisane slike, a zatim i slike generisane u programu Blender.
 
-Gore navedene komande su za Git Bash i podrazumeva se da je instaliran Python programski jezik.
 Aplikacija je predviđena za Windows operativni sistem.
 
 Izveštaj se čuva lokalno u folderu.
