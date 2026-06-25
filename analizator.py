@@ -78,6 +78,7 @@ def analiziraj_slike(
     llm = napravi_openai_model(model=model)
 
     # Povezujemo prompt, model i parser u LangChain lanac.
+    # Povezuje više koraka u jedan tok.
     lanac = PROMPT_ZA_POREDJENJE | llm | StrOutputParser()
 
     # Pretvaramo AI sliku u data URL format koji OpenAI vision model može da pročita.
@@ -111,6 +112,7 @@ def napravi_openai_model(model: str | None = None) -> ChatOpenAI:
 
 def pretvori_sliku_u_data_url(slika: Any) -> str:
     # Pokušavamo da pročitamo MIME tip slike iz objekta, a ako ne postoji, koristimo image/png.
+    # mime_tip govori api-u llm-a kojeg je tipa sadržaj koji se šalje LLM-u
     mime_tip = getattr(slika, "mime_tip", "image/png")
 
     # Ako objekat slike već ima base64 sadržaj, koristimo ga direktno.

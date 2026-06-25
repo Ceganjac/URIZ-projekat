@@ -27,9 +27,7 @@ def main() -> None:
     ).strip()
 
     try:
-        # Ako korisnik nije tražio preskakanje obaveštenja, prikazujemo poruku o privatnosti.
-        if not argumenti.preskoci_obavestenje_o_privatnosti:
-            prikazi_obavestenje_o_privatnosti()
+        prikazi_obavestenje_o_privatnosti()
 
         # Kreiramo klijenta koji proverava da li slike postoje, da li su PNG i da li su odgovarajuće veličine.
         klijent_za_slike = KlijentSlika(
@@ -87,7 +85,8 @@ def main() -> None:
 
 
 def parsiraj_argumente() -> argparse.Namespace:
-    # Definišemo CLI interfejs za pokretanje programa iz terminala.
+    # Definišemo CLI interfejs za pokretanje programa iz terminala,
+    # kreira se nova instanca klase ArgumentParser
     parser = argparse.ArgumentParser(
         description=(
             "Poredi AI generisanu sliku sa Blender renderovanom slikom "
@@ -112,6 +111,7 @@ def parsiraj_argumente() -> argparse.Namespace:
     )
 
     # Opcioni argument za izlazni Markdown fajl.
+    # Omogućava prosleđivanje putanje gde će biti sačuvan izveštaj.
     parser.add_argument(
         "--izlaz",
         default="izvestaj_poredjenja_slika.md",
@@ -131,13 +131,6 @@ def parsiraj_argumente() -> argparse.Namespace:
         "--model",
         default=None,
         help="Naziv OpenAI modela koji će se koristiti za analizu slika.",
-    )
-
-    # Opcioni argument kojim korisnik može da preskoči obaveštenje o privatnosti.
-    parser.add_argument(
-        "--preskoci-obavestenje-o-privatnosti",
-        action="store_true",
-        help="Preskače prikaz obaveštenja o privatnosti pre analize.",
     )
 
     # Vraćamo obrađene argumente.
